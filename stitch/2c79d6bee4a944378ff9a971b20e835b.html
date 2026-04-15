@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Takvim-62161 | Mobil Görünüm</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#0b1326",
+                    "surface-container-low": "#131b2e",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed": "#261900",
+                    "on-surface": "#dae2fd",
+                    "secondary": "#b9c8de",
+                    "on-background": "#dae2fd",
+                    "primary-fixed": "#d4e3ff",
+                    "surface-bright": "#31394d",
+                    "on-primary-fixed": "#001c39",
+                    "outline-variant": "#414751",
+                    "tertiary-container": "#d19900",
+                    "outline": "#8b919d",
+                    "background": "#0b1326",
+                    "tertiary-fixed": "#ffdea4",
+                    "on-secondary": "#233143",
+                    "primary": "#a4c9ff",
+                    "on-surface-variant": "#c1c7d3",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "primary-container": "#60a5fa",
+                    "surface": "#0b1326",
+                    "on-primary-container": "#003a6b",
+                    "inverse-on-surface": "#283044",
+                    "tertiary-fixed-dim": "#fabd34",
+                    "surface-tint": "#a4c9ff",
+                    "inverse-surface": "#dae2fd",
+                    "tertiary": "#fabd34",
+                    "secondary-container": "#39485a",
+                    "on-primary-fixed-variant": "#004883",
+                    "secondary-fixed-dim": "#b9c8de",
+                    "primary-fixed-dim": "#a4c9ff",
+                    "on-secondary-container": "#a7b6cc",
+                    "surface-container-highest": "#2d3449",
+                    "error-container": "#93000a",
+                    "surface-variant": "#2d3449",
+                    "inverse-primary": "#0060ac",
+                    "on-tertiary-container": "#4b3500",
+                    "on-secondary-fixed": "#0d1c2d",
+                    "surface-container-lowest": "#060e20",
+                    "on-tertiary": "#412d00",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "on-tertiary-fixed-variant": "#5d4200",
+                    "on-primary": "#00315d",
+                    "surface-container-high": "#222a3d",
+                    "secondary-fixed": "#d4e4fa",
+                    "surface-container": "#171f33"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center">
+<!-- TopAppBar -->
+<header class="bg-[#0b1326] w-full top-0 flex justify-between items-center px-6 h-16 z-50">
+<h1 class="text-2xl font-bold tracking-tighter text-[#60a5fa] font-['Inter'] tracking-tight">Takvim-62161</h1>
+<div class="flex items-center gap-4">
+<button class="text-[#c1c7d3] hover:bg-[#222a3d] transition-colors p-2 rounded-full duration-200 ease-in-out">
+<span class="material-symbols-outlined">contrast</span>
+</button>
+<button class="text-[#c1c7d3] hover:bg-[#222a3d] transition-colors p-2 rounded-full duration-200 ease-in-out">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area (Mobile Focused) -->
+<main class="w-full max-w-[480px] px-4 py-4 flex-1 flex flex-col gap-6">
+<!-- Time-Scrubber (Editorial Header) -->
+<section class="flex flex-col gap-4">
+<div class="flex justify-between items-end">
+<div>
+<span class="text-on-secondary-container font-label uppercase tracking-widest text-[10px] mb-1 block">Eylül 2024</span>
+<h2 class="text-4xl font-bold tracking-tighter text-primary">Bugün</h2>
+</div>
+<div class="flex gap-2 mb-1">
+<button class="p-2 bg-surface-container rounded-xl text-primary outline-variant outline-[20%] border-0 outline-none">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 bg-surface-container rounded-xl text-primary outline-variant outline-[20%] border-0 outline-none">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Date Scrubber Selection -->
+<div class="flex overflow-x-auto gap-4 pb-2 no-scrollbar">
+<div class="flex flex-col items-center min-w-[50px] py-3 rounded-xl bg-surface-container-low">
+<span class="text-[10px] text-on-surface-variant font-label uppercase">Pzt</span>
+<span class="text-lg font-bold">16</span>
+</div>
+<div class="flex flex-col items-center min-w-[50px] py-3 rounded-xl bg-surface-container-low">
+<span class="text-[10px] text-on-surface-variant font-label uppercase">Sal</span>
+<span class="text-lg font-bold">17</span>
+</div>
+<div class="flex flex-col items-center min-w-[50px] py-3 rounded-xl bg-surface-container-high border-l-2 border-primary">
+<span class="text-[10px] text-primary font-label uppercase">Çar</span>
+<span class="text-lg font-bold text-primary">18</span>
+</div>
+<div class="flex flex-col items-center min-w-[50px] py-3 rounded-xl bg-surface-container-low">
+<span class="text-[10px] text-on-surface-variant font-label uppercase">Per</span>
+<span class="text-lg font-bold">19</span>
+</div>
+<div class="flex flex-col items-center min-w-[50px] py-3 rounded-xl bg-surface-container-low">
+<span class="text-[10px] text-on-surface-variant font-label uppercase">Cum</span>
+<span class="text-lg font-bold">20</span>
+</div>
+</div>
+</section>
+<!-- Compact Calendar Grid -->
+<section class="bg-surface-container rounded-xl p-4">
+<div class="calendar-grid text-center mb-4">
+<div class="text-[10px] font-label uppercase tracking-widest text-on-secondary-container">Pt</div>
+<div class="text-[10px] font-label uppercase tracking-widest text-on-secondary-container">Sa</div>
+<div class="text-[10px] font-label uppercase tracking-widest text-on-secondary-container">Ça</div>
+<div class="text-[10px] font-label uppercase tracking-widest text-on-secondary-container">Pe</div>
+<div class="text-[10px] font-label uppercase tracking-widest text-on-secondary-container">Cu</div>
+<div class="text-[10px] font-label uppercase tracking-widest text-on-secondary-container">Ct</div>
+<div class="text-[10px] font-label uppercase tracking-widest text-on-secondary-container">Pz</div>
+</div>
+<div class="calendar-grid gap-y-2">
+<!-- Row 1 -->
+<div class="text-on-surface-variant text-sm py-2 opacity-30">26</div>
+<div class="text-on-surface-variant text-sm py-2 opacity-30">27</div>
+<div class="text-on-surface-variant text-sm py-2 opacity-30">28</div>
+<div class="text-on-surface-variant text-sm py-2 opacity-30">29</div>
+<div class="text-on-surface-variant text-sm py-2 opacity-30">30</div>
+<div class="text-on-surface text-sm py-2">1</div>
+<div class="text-on-surface text-sm py-2">2</div>
+<!-- Row 2 -->
+<div class="text-on-surface text-sm py-2">3</div>
+<div class="text-on-surface text-sm py-2">4</div>
+<div class="text-on-surface text-sm py-2 relative">
+                    5
+                    <div class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-tertiary rounded-full"></div>
+</div>
+<div class="text-on-surface text-sm py-2">6</div>
+<div class="text-on-surface text-sm py-2">7</div>
+<div class="text-on-surface text-sm py-2">8</div>
+<div class="text-on-surface text-sm py-2">9</div>
+<!-- Row 3 -->
+<div class="text-on-surface text-sm py-2">10</div>
+<div class="text-on-surface text-sm py-2">11</div>
+<div class="text-on-surface text-sm py-2">12</div>
+<div class="text-on-surface text-sm py-2 bg-primary/20 text-primary rounded-lg font-bold">13</div>
+<div class="text-on-surface text-sm py-2">14</div>
+<div class="text-on-surface text-sm py-2">15</div>
+<div class="text-on-surface text-sm py-2">16</div>
+</div>
+</section>
+<!-- Daily Tasks (Focus Area) -->
+<section class="flex flex-col gap-3">
+<div class="flex justify-between items-center px-1">
+<h3 class="text-sm font-bold text-on-surface">Bugünün Planı</h3>
+<span class="text-[10px] font-label uppercase tracking-widest text-on-secondary-container">2 Etkinlik</span>
+</div>
+<!-- Event Card 1 -->
+<div class="bg-surface-container-high rounded-xl p-4 flex gap-4 items-center border-l-2 border-primary">
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold">14:00</span>
+<span class="text-[8px] uppercase text-on-surface-variant">60dk</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-on-surface">Mimarî İnceleme</h4>
+<p class="text-xs text-on-surface-variant">The Nocturnal Architect Studio</p>
+</div>
+<button class="text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</div>
+<!-- Event Card 2 -->
+<div class="bg-surface-container-high rounded-xl p-4 flex gap-4 items-center border-l-2 border-tertiary">
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold">16:30</span>
+<span class="text-[8px] uppercase text-on-surface-variant">30dk</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-on-surface">Müşteri Brifingi</h4>
+<p class="text-xs text-on-surface-variant">Zoom üzerinden bağlantı</p>
+</div>
+<button class="text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</div>
+</section>
+</main>
+<!-- FAB Button -->
+<button class="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-gradient-to-br from-primary-container to-primary shadow-lg flex items-center justify-center text-on-primary-container z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- BottomNavBar (Shared Component Logic) -->
+<nav class="fixed bottom-0 w-full h-16 bg-[#131b2e] flex justify-around items-center px-4 md:hidden z-50">
+<button class="flex flex-col items-center gap-1 border-l-2 border-[#60a5fa] text-[#60a5fa] bg-[#171f33] px-4 py-1 transition-all duration-300">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[8px]">Aylık</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#a7b6cc] hover:text-[#60a5fa] hover:bg-[#171f33] px-4 py-1 transition-all duration-300">
+<span class="material-symbols-outlined">view_week</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[8px]">Haftalık</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#a7b6cc] hover:text-[#60a5fa] hover:bg-[#171f33] px-4 py-1 transition-all duration-300">
+<span class="material-symbols-outlined">view_agenda</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[8px]">Ajanda</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#a7b6cc] hover:text-[#60a5fa] hover:bg-[#171f33] px-4 py-1 transition-all duration-300">
+<span class="material-symbols-outlined">sticky_note_2</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[8px]">Notlar</span>
+</button>
+</nav>
+<!-- Visual Polish: Surface Nesting Background Element -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute -top-[10%] -left-[10%] w-[50%] h-[40%] bg-primary/5 blur-[100px] rounded-full"></div>
+<div class="absolute top-[40%] right-[-5%] w-[40%] h-[30%] bg-tertiary/5 blur-[100px] rounded-full"></div>
+</div>
+</body></html>

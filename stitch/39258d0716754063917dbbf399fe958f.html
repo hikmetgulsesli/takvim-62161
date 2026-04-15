@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#0b1326",
+                    "surface-container-low": "#131b2e",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed": "#261900",
+                    "on-surface": "#dae2fd",
+                    "secondary": "#b9c8de",
+                    "on-background": "#dae2fd",
+                    "primary-fixed": "#d4e3ff",
+                    "surface-bright": "#31394d",
+                    "on-primary-fixed": "#001c39",
+                    "outline-variant": "#414751",
+                    "tertiary-container": "#d19900",
+                    "outline": "#8b919d",
+                    "background": "#0b1326",
+                    "tertiary-fixed": "#ffdea4",
+                    "on-secondary": "#233143",
+                    "primary": "#a4c9ff",
+                    "on-surface-variant": "#c1c7d3",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "primary-container": "#60a5fa",
+                    "surface": "#0b1326",
+                    "on-primary-container": "#003a6b",
+                    "inverse-on-surface": "#283044",
+                    "tertiary-fixed-dim": "#fabd34",
+                    "surface-tint": "#a4c9ff",
+                    "inverse-surface": "#dae2fd",
+                    "tertiary": "#fabd34",
+                    "secondary-container": "#39485a",
+                    "on-primary-fixed-variant": "#004883",
+                    "secondary-fixed-dim": "#b9c8de",
+                    "primary-fixed-dim": "#a4c9ff",
+                    "on-secondary-container": "#a7b6cc",
+                    "surface-container-highest": "#2d3449",
+                    "error-container": "#93000a",
+                    "surface-variant": "#2d3449",
+                    "inverse-primary": "#0060ac",
+                    "on-tertiary-container": "#4b3500",
+                    "on-secondary-fixed": "#0d1c2d",
+                    "surface-container-lowest": "#060e20",
+                    "on-tertiary": "#412d00",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "on-tertiary-fixed-variant": "#5d4200",
+                    "on-primary": "#00315d",
+                    "surface-container-high": "#222a3d",
+                    "secondary-fixed": "#d4e4fa",
+                    "surface-container": "#171f33"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #60a5fa 0%, #a4c9ff 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="hidden md:flex flex-col py-8 px-4 h-full w-64 bg-surface-container-low">
+<div class="mb-10 px-4">
+<h1 class="text-xl font-black text-primary tracking-tighter">Takvim-62161</h1>
+<p class="font-['Inter'] uppercase tracking-widest text-[10px] text-on-secondary-container mt-1">The Nocturnal Architect</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:text-primary hover:bg-surface-container transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Aylık</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:text-primary hover:bg-surface-container transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined" data-icon="view_week">view_week</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Haftalık</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 border-l-2 border-primary text-primary bg-surface-container transition-all duration-300 rounded-r-xl group" href="#">
+<span class="material-symbols-outlined" data-icon="view_agenda" style="font-variation-settings: 'FILL' 1;">view_agenda</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Ajanda</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-secondary-container hover:text-primary hover:bg-surface-container transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined" data-icon="sticky_note_2">sticky_note_2</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Notlar</span>
+</a>
+</nav>
+<div class="mt-auto px-4 space-y-6">
+<button class="w-full py-4 rounded-xl primary-gradient text-on-primary-container font-bold text-sm tracking-tight flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                    Yeni Etkinlik
+                </button>
+<div class="pt-6 border-t border-outline-variant/20">
+<a class="flex items-center gap-3 py-2 text-on-secondary-container hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Ayarlar</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 flex flex-col bg-surface overflow-hidden relative">
+<!-- TopAppBar Component -->
+<header class="flex justify-between items-center px-6 h-16 w-full bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="md:hidden material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h2 class="font-['Inter'] tracking-tight font-bold text-primary">Ajanda Görünümü</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex items-center bg-surface-container rounded-full px-4 py-1.5 gap-2 border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-on-surface-variant w-48" placeholder="Notlarda ara..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="contrast">contrast</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden">
+<img alt="User Avatar" data-alt="close-up portrait of a professional man with a friendly expression in studio lighting with a neutral dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCcE2ohLjcltJ5CHXxoZy32o7fUYe3RxI3ZSRJrlJ63Ws4Kq_rnbgGdXrMwej6lCuJmuMFoeTuUPz-lIbXPwQCOWICNv5-VCOUmHQpiSdlmSwQ-3e8KHbxXGMentaG7eegc5QBsB37k9yEPb5fBFG-EmoXV6y1OguztvacW1g6JQRGUe_UBBEa8ExtF4yn5DjvRGWiEao1-qAEZVisBHoeqGjvJbt1I8prdIg2T0HSyLUfrDgMJP9GGNNN638K7cv4H8GdFr7ltJY"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Calendar Content Area -->
+<div class="flex-1 flex p-6 gap-6">
+<!-- Left Section: Minimalist Calendar Grid (Faded) -->
+<div class="hidden lg:flex flex-col flex-[2] bg-surface-container rounded-xl overflow-hidden opacity-40 select-none grayscale">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h3 class="text-2xl font-bold tracking-tighter">Ekim 2023</h3>
+<div class="flex gap-2">
+<span class="material-symbols-outlined">chevron_left</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 flex-1">
+<div class="p-4 border-r border-b border-outline-variant/10"></div>
+<div class="p-4 border-r border-b border-outline-variant/10"></div>
+<div class="p-4 border-r border-b border-outline-variant/10"></div>
+<div class="p-4 border-r border-b border-outline-variant/10"></div>
+<div class="p-4 border-r border-b border-outline-variant/10"></div>
+<div class="p-4 border-r border-b border-outline-variant/10"></div>
+<div class="p-4 border-b border-outline-variant/10"></div>
+</div>
+</div>
+<!-- Right Section: Empty State Focus (The Nocturnal Architect Style) -->
+<div class="flex-1 lg:flex-[1.2] flex flex-col justify-center items-center p-12 relative overflow-hidden group">
+<!-- Background Decoration -->
+<div class="absolute inset-0 bg-surface-container-low rounded-3xl -z-10 border border-outline-variant/10"></div>
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-tertiary/5 rounded-full blur-3xl"></div>
+<!-- Empty State Content -->
+<div class="max-w-xs text-center space-y-8 flex flex-col items-center">
+<!-- Icon with Architectural Depth -->
+<div class="relative">
+<div class="w-24 h-24 rounded-full bg-surface-container-highest flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 primary-gradient opacity-10"></div>
+<span class="material-symbols-outlined text-5xl text-primary relative z-10" data-icon="calendar_today" style="font-variation-settings: 'wght' 200;">calendar_today</span>
+</div>
+<!-- Decorative Sparkle -->
+<div class="absolute -top-2 -right-2 p-1 bg-surface-container-high rounded-lg shadow-xl">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-sm" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="text-3xl font-bold tracking-tighter text-on-surface leading-tight">Henüz not eklenmemiş</h3>
+<p class="text-on-surface-variant font-medium leading-relaxed">Plan yapmaya başlamak için takvimde bir güne tıklayın.</p>
+</div>
+<div class="pt-4 w-full">
+<button class="w-full glass-panel border border-outline-variant/20 py-4 px-6 rounded-xl text-primary font-bold hover:bg-surface-container-highest transition-all duration-300 flex items-center justify-center gap-3 group">
+<span class="material-symbols-outlined text-xl group-hover:rotate-90 transition-transform duration-300" data-icon="add">add</span>
+<span>Hızlı Not Oluştur</span>
+</button>
+<p class="mt-6 text-[10px] uppercase tracking-widest text-on-secondary-container font-semibold">Veya bir .ics dosyası içe aktarın</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile BottomNavBar (Responsive Pivot) -->
+<nav class="md:hidden flex justify-around items-center px-6 h-16 w-full bg-surface-container-low border-t border-outline-variant/10">
+<a class="flex flex-col items-center text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="text-[10px] uppercase tracking-tighter mt-1 font-bold">Takvim</span>
+</a>
+<a class="flex flex-col items-center text-on-secondary-container" href="#">
+<span class="material-symbols-outlined" data-icon="view_agenda">view_agenda</span>
+<span class="text-[10px] uppercase tracking-tighter mt-1">Ajanda</span>
+</a>
+<div class="bg-primary-container p-3 rounded-full -mt-10 shadow-xl">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="add">add</span>
+</div>
+<a class="flex flex-col items-center text-on-secondary-container" href="#">
+<span class="material-symbols-outlined" data-icon="sticky_note_2">sticky_note_2</span>
+<span class="text-[10px] uppercase tracking-tighter mt-1">Notlar</span>
+</a>
+<a class="flex flex-col items-center text-on-secondary-container" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] uppercase tracking-tighter mt-1">Ayarlar</span>
+</a>
+</nav>
+</main>
+</div>
+</body></html>

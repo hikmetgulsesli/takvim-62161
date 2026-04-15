@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b1326;
+      color: #dae2fd;
+      margin: 0;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-effect {
+      background: rgba(45, 52, 73, 0.7);
+      backdrop-filter: blur(12px);
+    }
+    .time-scrubber-glow {
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0) 70%);
+    }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "surface-dim": "#0b1326",
+                  "surface-container-low": "#131b2e",
+                  "on-error": "#690005",
+                  "on-tertiary-fixed": "#261900",
+                  "on-surface": "#dae2fd",
+                  "secondary": "#b9c8de",
+                  "on-background": "#dae2fd",
+                  "primary-fixed": "#d4e3ff",
+                  "surface-bright": "#31394d",
+                  "on-primary-fixed": "#001c39",
+                  "outline-variant": "#414751",
+                  "tertiary-container": "#d19900",
+                  "outline": "#8b919d",
+                  "background": "#0b1326",
+                  "tertiary-fixed": "#ffdea4",
+                  "on-secondary": "#233143",
+                  "primary": "#a4c9ff",
+                  "on-surface-variant": "#c1c7d3",
+                  "on-error-container": "#ffdad6",
+                  "error": "#ffb4ab",
+                  "primary-container": "#60a5fa",
+                  "surface": "#0b1326",
+                  "on-primary-container": "#003a6b",
+                  "inverse-on-surface": "#283044",
+                  "tertiary-fixed-dim": "#fabd34",
+                  "surface-tint": "#a4c9ff",
+                  "inverse-surface": "#dae2fd",
+                  "tertiary": "#fabd34",
+                  "secondary-container": "#39485a",
+                  "on-primary-fixed-variant": "#004883",
+                  "secondary-fixed-dim": "#b9c8de",
+                  "primary-fixed-dim": "#a4c9ff",
+                  "on-secondary-container": "#a7b6cc",
+                  "surface-container-highest": "#2d3449",
+                  "error-container": "#93000a",
+                  "surface-variant": "#2d3449",
+                  "inverse-primary": "#0060ac",
+                  "on-tertiary-container": "#4b3500",
+                  "on-secondary-fixed": "#0d1c2d",
+                  "surface-container-lowest": "#060e20",
+                  "on-tertiary": "#412d00",
+                  "on-secondary-fixed-variant": "#39485a",
+                  "on-tertiary-fixed-variant": "#5d4200",
+                  "on-primary": "#00315d",
+                  "surface-container-high": "#222a3d",
+                  "secondary-fixed": "#d4e4fa",
+                  "surface-container": "#171f33"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {},
+          "fontFamily": {
+                  "headline": ["Inter"],
+                  "body": ["Inter"],
+                  "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Shell -->
+<header class="bg-[#0b1326] text-[#60a5fa] font-['Inter'] tracking-tight w-full top-0 flex justify-between items-center px-6 h-16 w-full fixed z-50">
+<div class="text-2xl font-bold tracking-tighter text-[#60a5fa]">Takvim-62161</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8">
+<a class="text-[#a4c9ff] font-semibold text-sm transition-colors" href="#">Aylık</a>
+<a class="text-[#c1c7d3] hover:bg-[#222a3d] transition-colors text-sm px-2 py-1 rounded" href="#">Haftalık</a>
+<a class="text-[#c1c7d3] hover:bg-[#222a3d] transition-colors text-sm px-2 py-1 rounded" href="#">Ajanda</a>
+<a class="text-[#c1c7d3] hover:bg-[#222a3d] transition-colors text-sm px-2 py-1 rounded" href="#">Notlar</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-[#222a3d] p-2 rounded-full transition-colors">contrast</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-[#222a3d] p-2 rounded-full transition-colors">settings</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional woman with a minimalist aesthetic and soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7I1zYkcBGCvkyeK3gOaoqUWQWZrOgtsNvQoW-hpjt5pTqo6OelODE0RV2KCxEyC1oabhMGft-fZT0-3Xetsl5nA3h2YEZLMatc8Xyy5OaeC4hF2WsdbBoj-Ig7Q-5M6YCISCtPWCJDvcndiA4mEUt61DiAGucQ53b_mOB5FEMtAAs-yqkbq283T7W3HNA6Tt1fP-s60VPmOKIMJnEKqYfIN153TvJNI5Gx4y3yY_rdoIKEudfk6K9B90iO5TB-7uJn9BJKcmr-Kc"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex h-screen pt-16">
+<!-- Side Navigation Shell (Desktop) -->
+<aside class="hidden md:flex flex-col py-8 px-4 h-full bg-[#131b2e] text-[#60a5fa] font-['Inter'] uppercase tracking-widest text-[10px] h-screen w-64 left-0">
+<div class="mb-10 px-4">
+<div class="text-xl font-black text-[#a4c9ff] tracking-tighter mb-1">Takvim-62161</div>
+<div class="text-[9px] text-on-secondary-container opacity-60">The Nocturnal Architect</div>
+</div>
+<nav class="flex-1 space-y-2">
+<button class="flex items-center gap-4 w-full px-4 py-3 border-l-2 border-[#60a5fa] text-[#60a5fa] bg-[#171f33] transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span>Aylık</span>
+</button>
+<button class="flex items-center gap-4 w-full px-4 py-3 text-[#a7b6cc] hover:text-[#60a5fa] hover:bg-[#171f33] transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]">view_week</span>
+<span>Haftalık</span>
+</button>
+<button class="flex items-center gap-4 w-full px-4 py-3 text-[#a7b6cc] hover:text-[#60a5fa] hover:bg-[#171f33] transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]">view_agenda</span>
+<span>Ajanda</span>
+</button>
+<button class="flex items-center gap-4 w-full px-4 py-3 text-[#a7b6cc] hover:text-[#60a5fa] hover:bg-[#171f33] transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]">sticky_note_2</span>
+<span>Notlar</span>
+</button>
+</nav>
+<div class="mt-auto space-y-2 border-t border-outline-variant/10 pt-6">
+<button class="bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold text-[11px] py-4 rounded-xl w-full flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm" data-weight="fill">add</span>
+          Yeni Etkinlik
+        </button>
+<button class="flex items-center gap-4 w-full px-4 py-3 text-[#a7b6cc] hover:text-[#60a5fa] hover:bg-[#171f33] transition-all duration-300">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span>Ayarlar</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 bg-surface overflow-y-auto no-scrollbar">
+<div class="max-w-7xl mx-auto p-6 md:p-10">
+<!-- Calendar Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div class="space-y-1">
+<h1 class="text-5xl md:text-6xl font-black tracking-tighter text-on-surface">Nisan 2026</h1>
+<p class="text-on-surface-variant font-medium tracking-wide">İLKBAHAR ÇEYREĞİ</p>
+</div>
+<div class="flex items-center gap-2 p-1 bg-surface-container-low rounded-xl">
+<button class="p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors flex items-center">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-6 py-2 bg-surface-container-high text-primary font-bold text-sm tracking-widest uppercase rounded-lg">BUGÜN</button>
+<button class="p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors flex items-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Monthly Grid -->
+<div class="bg-surface-container rounded-3xl overflow-hidden shadow-2xl shadow-black/40">
+<!-- Weekday Labels -->
+<div class="grid grid-cols-7 border-b border-outline-variant/10">
+<div class="py-4 text-center text-[10px] font-black text-on-secondary-container tracking-[0.2em]">PZT</div>
+<div class="py-4 text-center text-[10px] font-black text-on-secondary-container tracking-[0.2em]">SAL</div>
+<div class="py-4 text-center text-[10px] font-black text-on-secondary-container tracking-[0.2em]">ÇAR</div>
+<div class="py-4 text-center text-[10px] font-black text-on-secondary-container tracking-[0.2em]">PER</div>
+<div class="py-4 text-center text-[10px] font-black text-on-secondary-container tracking-[0.2em]">CUM</div>
+<div class="py-4 text-center text-[10px] font-black text-tertiary tracking-[0.2em]">CMT</div>
+<div class="py-4 text-center text-[10px] font-black text-tertiary tracking-[0.2em]">PAZ</div>
+</div>
+<!-- Days Grid -->
+<div class="grid grid-cols-7">
+<!-- Previous Month Padding -->
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 bg-surface-container-lowest/30 opacity-20 p-4">
+<span class="text-sm font-medium">30</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 bg-surface-container-lowest/30 opacity-20 p-4">
+<span class="text-sm font-medium">31</span>
+</div>
+<!-- Current Month Days -->
+<!-- 1 to 13 -->
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="text-xl font-bold group-hover:text-primary">1</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_8px_rgba(96,165,250,0.6)]"></div>
+</div>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">2</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="text-xl font-bold group-hover:text-primary">3</span>
+<div class="flex flex-col gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary"></div>
+</div>
+</div>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-low/20">
+<span class="text-xl font-bold text-tertiary/60">4</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-low/20">
+<span class="text-xl font-bold text-tertiary/60">5</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">6</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">7</span>
+<div class="mt-2 space-y-1">
+<div class="h-1 w-full bg-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/3"></div>
+</div>
+</div>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">8</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="text-xl font-bold group-hover:text-primary">9</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container"></div>
+</div>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">10</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-low/20">
+<span class="text-xl font-bold text-tertiary/60">11</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-low/20">
+<span class="text-xl font-bold text-tertiary/60">12</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">13</span>
+</div>
+<!-- TODAY: 14 Nisan -->
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 bg-surface-container-high/60 relative overflow-hidden ring-1 ring-primary/30 ring-inset">
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex justify-between items-start">
+<span class="text-2xl font-black text-primary">14</span>
+<span class="text-[10px] font-bold text-primary tracking-tighter bg-primary/10 px-2 py-0.5 rounded">BUGÜN</span>
+</div>
+<div class="mt-auto flex gap-1">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<div class="w-2 h-2 rounded-full bg-primary/40"></div>
+</div>
+</div>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">15</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">16</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">17</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1"></div>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-low/20">
+<span class="text-xl font-bold text-tertiary/60">18</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-low/20">
+<span class="text-xl font-bold text-tertiary/60">19</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">20</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">21</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">22</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1"></div>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">23</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">24</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-low/20">
+<span class="text-xl font-bold text-tertiary/60">25</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer bg-surface-container-low/20">
+<span class="text-xl font-bold text-tertiary/60">26</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">27</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1"></div>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">28</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">29</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 p-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<span class="text-xl font-bold group-hover:text-primary">30</span>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-1"></div>
+</div>
+<!-- Next Month Padding -->
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 bg-surface-container-lowest/30 opacity-20 p-4">
+<span class="text-sm font-medium">1</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 bg-surface-container-lowest/30 opacity-20 p-4">
+<span class="text-sm font-medium">2</span>
+</div>
+<div class="h-32 md:h-44 border-r border-b border-outline-variant/5 bg-surface-container-lowest/30 opacity-20 p-4">
+<span class="text-sm font-medium">3</span>
+</div>
+</div>
+</div>
+<!-- Horizontal Scrubber Detail (Editorial Feature) -->
+<div class="mt-16 overflow-hidden relative group">
+<div class="flex items-end justify-between mb-8">
+<h3 class="text-2xl font-bold tracking-tight">Hızlı Bakış: 14 - 20 Nisan</h3>
+<span class="text-[10px] font-black tracking-widest text-on-surface-variant">ÖNÜMÜZDEKİ 7 GÜN</span>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 relative">
+<div class="flex-none w-32 md:w-40 aspect-[3/4] bg-primary/10 rounded-2xl p-6 ring-1 ring-primary/40 relative">
+<div class="absolute inset-0 time-scrubber-glow rounded-2xl"></div>
+<div class="relative z-10 flex flex-col justify-between h-full">
+<span class="text-xs font-bold text-primary uppercase">Salı</span>
+<span class="text-5xl font-black text-primary">14</span>
+<span class="text-[10px] font-bold text-primary/80">3 Etkinlik</span>
+</div>
+</div>
+<div class="flex-none w-32 md:w-40 aspect-[3/4] bg-surface-container-low rounded-2xl p-6 hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col justify-between h-full">
+<span class="text-xs font-bold text-on-surface-variant uppercase">Çarşamba</span>
+<span class="text-5xl font-black text-on-surface">15</span>
+<span class="text-[10px] font-bold text-on-surface-variant/60">Boş Gün</span>
+</div>
+</div>
+<div class="flex-none w-32 md:w-40 aspect-[3/4] bg-surface-container-low rounded-2xl p-6 hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col justify-between h-full">
+<span class="text-xs font-bold text-on-surface-variant uppercase">Perşembe</span>
+<span class="text-5xl font-black text-on-surface">16</span>
+<span class="text-[10px] font-bold text-on-surface-variant/60">1 Etkinlik</span>
+</div>
+</div>
+<div class="flex-none w-32 md:w-40 aspect-[3/4] bg-surface-container-low rounded-2xl p-6 hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col justify-between h-full">
+<span class="text-xs font-bold text-on-surface-variant uppercase">Cuma</span>
+<span class="text-5xl font-black text-on-surface">17</span>
+<span class="text-[10px] font-bold text-on-surface-variant/60">2 Etkinlik</span>
+</div>
+</div>
+<div class="flex-none w-32 md:w-40 aspect-[3/4] bg-surface-container-low rounded-2xl p-6 hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col justify-between h-full">
+<span class="text-xs font-bold text-on-surface-variant uppercase">Cumartesi</span>
+<span class="text-5xl font-black text-on-surface">18</span>
+<span class="text-[10px] font-bold text-on-surface-variant/60">Hafta Sonu</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Bottom Nav Shell (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 right-0 h-20 bg-surface-container-low glass-effect flex justify-around items-center px-4 z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Aylık</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">view_week</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Hafta</span>
+</button>
+<button class="w-14 h-14 bg-gradient-to-br from-primary-container to-primary rounded-full -mt-10 shadow-lg shadow-primary/30 flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">view_agenda</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Ajanda</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">sticky_note_2</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Notlar</span>
+</button>
+</footer>
+</body></html>

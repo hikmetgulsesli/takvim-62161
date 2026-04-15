@@ -1,0 +1,28 @@
+# Takvim Uygulaması — Ürün Gereksinimleri Dokümanı (PRD)
+
+## 1. Genel Bakış
+Takvim-62161, kullanıcıların aylık görünümde tarihleri görüntülemesine, gün eklemesine ve silmesine olanak tanıyan basit, tek sayfalık bir web uygulamasıdır. Uygulama React 18, Vite ve Tailwind CSS ile geliştirilmiş olup tüm veriler tarayıcıda localStorage üzerinde saklanır. Türkçe arayüz ile yerel bir kullanıcı deneyimi sunmayı hedefler.
+
+## 2. Hedefler
+- Aylık takvim görünümünde gezinme (önceki/sonraki ay, bugüne dön)
+- Herhangi bir güne not/etiket ekleme ve silme
+- Koyu ve açık tema desteği
+- Mobil uyumlu responsive tasarım (320px — 1920px)
+- Sade, minimal ve temiz bir arayüz tasarımı
+
+## 3. Ekranlar
+1. **Ana Takvim:** Aylık grid görünümü, navigasyon, tema toggle.
+2. **Gün Detay Modal:** Not ekleme/düzenleme modal penceresi.
+3. **Silme Onay Dialog:** "Emin misin?" onay penceresi.
+4. **Boş Durum (Empty State):** Hiç not yokken yardım metni.
+5. **Tema Değiştirici:** Dark/light mode toggle butonu.
+6. **Mobil Navigasyon:** 320px-480px kompakt grid.
+7. **Hata Durumu (Error):** localStorage hata ekranı.
+
+## 4. Tasarım Detayları (Dark Mode)
+- Background: #0F172A (Slate 900)
+- Surface/Card: #1E293B (Slate 800)
+- Primary: #60A5FA (Blue 400)
+- Text Primary: #F1F5F9 (Slate 100)
+- Border: #334155 (Slate 700)
+- Font: Inter

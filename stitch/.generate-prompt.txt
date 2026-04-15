@@ -1,0 +1,344 @@
+# Takvim Uygulaması — Ürün Gereksinimleri Dokümanı (PRD)
+
+## 1. Genel Bakış
+
+Takvim-62161, kullanıcıların aylık görünümde tarihleri görüntülemesine, gün eklemesine ve silmesine olanak tanıyan basit, tek sayfalık bir web uygulamasıdır. Uygulama React 18, Vite ve Tailwind CSS ile geliştirilmiş olup tüm veriler tarayıcıda localStorage üzerinde saklanır. Türkçe arayüz ile yerel bir kullanıcı deneyimi sunmayı hedefler. Hedef kitle: bireysel kullanıcılar, günlük planlama ihtiyacı olan herkes.
+
+## 2. Hedefler
+
+- Aylık takvim görünümünde gezinme (önceki/sonraki ay, bugüne dön)
+- Herhangi bir güne not/etiket ekleme ve silme
+- Tüm verilerin tarayıcıda localStorage ile kalıcı saklanması
+- Koyu ve açık tema desteği ile kullanıcı tercihine göre geçiş
+- Mobil uyumlu responsive tasarım (320px — 1920px)
+- İlk yükleme süresi 2 saniyeden kısa, hızlı ve akıcı UI
+- WCAG 2.1 AA erişilebilirlik standartlarına uyum
+- Sade, minimal ve temiz bir arayüz tasarımı
+- Klavye navigasyonu tam desteği
+- Hiçbir harici API veya sunucu bağımlılığı olmadan çalışma
+
+## 3. Tech Stack Detayı
+
+### 3.1 Framework
+- **React 18.3.x** — hooks tabanlı bileşen mimarisi, Concurrent Features kullanımı
+- **TypeScript 5.x** — tip güvenliği, geliştirici deneyimi
+
+### 3.2 Build Tool
+- **Vite 6.x** — hızlı HMR (Hot Module Replacement), modern ESM build
+
+### 3.3 Styling
+- **Tailwind CSS 3.4.x** — utility-first CSS, responsive ve dark mode desteği
+- Tema: CSS custom properties (Tailwind darkMode: 'class')
+- Renk paleti: Slate (gray-toned) taban — neutral ve blue accent
+
+### 3.4 State Management
+- **useState / useReducer** — React hooks, context API ile tema yönetimi
+- localStorage senkronizasyonu için custom useLocalStorage hook
+
+### 3.5 Storage
+- **localStorage API** — tarayıcıda kalıcı veri saklama
+- Veri formatı: JSON serialized object
+- Key: 'takvim-62161-data'
+- TTL: yok (süresiz saklama, kullanıcı temizlemediği sürece)
+
+### 3.6 Routing
+- **React Router DOM 7.x** — tek sayfa, ancak URL state desteği için (ileri geri navigasyonu)
+- routes: '/' (ana takvim sayfası), '/hakkinda' (opsiyonel bilgi sayfası)
+
+### 3.7 Icons
+- **Lucide React** — açık, tutarlı icon seti, SVG tabanlı
+
+## 4. Fonksiyonel Gereksinimler
+
+### 4.1 Aylık Takvim Görünümü
+- **Grid yapısı:** 7 sütun (Pazartesi — Pazar), 6 satır (maksimum hafta sayısı)
+- **Ay/yıl başlığı:** "Ay Yıl" formatında (ör: "Nisan 2026"), büyük ve okunabilir
+- **Navigasyon:** Sol/sağ ok butonları ile önceki/sonraki aya geçiş
+- **Bugün vurgusu:** İçinde bulunulan gün farklı bir arka plan rengi ile işaretli
+- **Seçili gün:** Kullanıcının tıkladığı gün görsel olarak vurgulanır
+- **Boş günler:** Geçerli aya ait olmayan günler soluk/disabled görünümde
+- **Gün numaraları:** Her hücrede 1-31 arası gün numarası
+
+**Hata mesajları:**
+- "Veri kaydedilemedi tarayıcı depolama alanı dolu" — localStorage full durumunda
+
+**Başarı durumu davranışı:**
+- Gün eklendiğinde/silindiğinde anında UI güncellemesi
+- localStorage'a otomatik kaydetme
+
+### 4.2 Gün Ekleme
+- **Tetikleme:** Takvimdeki herhangi bir güne tıklama
+- **Input alanı:** Gün hücresine tıklayınca açılan bir metin giriş kutusu (textarea)
+- **Maksimum karakter:** 500 karakter
+- **Zorunlu alan:** En az 1 karakter girilmeli (boş bırakılamaz)
+- **Timestamp:** Eklenen gün için o anki zaman damgası kaydedilir
+- **Düzenleme:** Aynı güne tekrar tıklayarak mevcut not düzenlenebilir
+
+**Hata mesajları:**
+- "Lütfen bir not girin" — boş input ile kaydetmeye çalışılırsa
+- "Karakter sınırını aştınız (maks 500)" — 500+ karakter girilirse
+
+**Başarı durumu davranışı:**
+- Not kaydedildiğinde hücrede küçük bir gösterge (nokta/icon) görünür
+- UI anında güncellenir
+
+### 4.3 Gün Silme
+- **Tetikleme:** Dolu bir gün hücresinde "sil" butonu (×) görünür, tıklanınca silme işlemi
+- **Onay adımı:** "Bu notu silmek istediğinize emin misiniz?" şeklinde onay dialogu
+- **İşlem:** Onay sonrası localStorage'dan ilgili kayıt silinir
+- **Geri alma:** Yok — silme işlemi kalıcıdır
+
+**Hata mesajları:**
+- "Silme işlemi başarısız" — localStorage erişim hatası durumunda
+
+**Başarı durumu davranışı:**
+- Hücre içeriği temizlenir, gösterge kaybolur
+- UI anında güncellenir
+
+### 4.4 Dark Mode
+- **Toggle butonu:** Sağ üst köşede tema değiştirici (ay/güneş ikonu)
+- **Depolama:** Tercih localStorage'da 'takvim-62161-theme' key'i ile saklanır
+- **Varsayılan:** Sistem tercihine göre (prefers-color-scheme), aksi takdirde açık tema
+- **Geçiş animasyonu:** 200ms ease transition
+- **Kalıcılık:** Sayfa yenilendiğinde seçili tema korunur
+
+**Başarı durumu davranışı:**
+- Tüm sayfa renkleri smooth geçiş ile değişir
+- Toggle butonu ikonu da değişir (güneş ↔ ay)
+
+### 4.5 Veri Görüntüleme
+- **Gün hücresi içeriği:** Sadece küçük bir gösterge (colored dot veya küçük icon)
+- **Detay görünümü:** Hücreye tıklayınca modal şeklinde not içeriği görünür
+- **Boş günler:** Herhangi bir gösterge olmadan boş görünür
+- **Bugün:** Farklı bir border ve/veya arka plan rengi ile vurgalanmış
+
+## 5. Veri Modeli
+
+### 5.1 Ana Veri Yapısı (localStorage)
+
+```typescript
+interface DayEntry {
+  date: string;       // "YYYY-MM-DD" formatında tarih
+  note: string;       // Kullanıcının girdiği not (max 500 karakter)
+  createdAt: number;  // Unix timestamp (ms)
+  updatedAt: number;  // Unix timestamp (ms)
+}
+
+interface CalendarData {
+  entries: Record<string, DayEntry>; // key: "YYYY-MM-DD", value: DayEntry
+  version: number;                   // Schema versiyonu
+}
+
+interface ThemePreference {
+  mode: 'light' | 'dark' | 'system';
+}
+```
+
+### 5.2 Storage Keys
+- `'takvim-62161-data'` — CalendarData JSON string
+- `'takvim-62161-theme'` — ThemePreference JSON string
+
+### 5.3 Entity Detayları
+**DayEntry:**
+- `date`: ISO 8601 date string, primary key olarak kullanılır
+- `note`: Kullanıcı metni, trim edilmiş, max 500 karakter
+- `createdAt`: entry ilk oluşturulduğunda timestamp
+- `updatedAt`: her güncellemede güncellenen timestamp
+
+**CalendarData:**
+- `entries`: Record<string, DayEntry>, key = date string
+- `version`: number, default 1
+
+## 6. UI/UX Gereksinimleri
+
+### 6.1 Design System
+
+**Aesthetic:** Minimal, temiz, sakin — takvim uygulaması için okunabilirlik ve sakinlik öncelikli.
+
+**Renk Paleti:**
+
+Açık Tema (Light):
+- Primary: #3B82F6 (Blue 500)
+- Secondary: #6366F1 (Indigo 500)
+- Background: #F8FAFC (Slate 50)
+- Surface/Card: #FFFFFF (White)
+- Text Primary: #1E293B (Slate 800)
+- Text Secondary: #64748B (Slate 500)
+- Border: #E2E8F0 (Slate 200)
+- Success: #22C55E (Green 500)
+- Error: #EF4444 (Red 500)
+- Warning: #F59E0B (Amber 500)
+- Today Highlight: #DBEAFE (Blue 100)
+
+Koyu Tema (Dark):
+- Primary: #60A5FA (Blue 400)
+- Secondary: #818CF8 (Indigo 400)
+- Background: #0F172A (Slate 900)
+- Surface/Card: #1E293B (Slate 800)
+- Text Primary: #F1F5F9 (Slate 100)
+- Text Secondary: #94A3B8 (Slate 400)
+- Border: #334155 (Slate 700)
+- Success: #4ADE80 (Green 400)
+- Error: #F87171 (Red 400)
+- Warning: #FBBF24 (Amber 400)
+- Today Highlight: #1E3A8A (Blue 900)
+
+**Tipografi:**
+- Heading Font: Inter (Google Fonts)
+- Body Font: Inter
+- Monospace: JetBrains Mono (tarihler için)
+- Scale: 12px / 14px / 16px / 18px / 24px / 32px / 48px
+- Line height: 1.5 (body), 1.2 (headings)
+
+**Icon Library:** Lucide React (lucide-react)
+
+### 6.2 Spacing & Components
+
+**Spacing Scale:** 4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px
+
+**Border Radius:**
+- Small (buttons, inputs): 6px
+- Medium (cards, modals): 12px
+- Large (containers): 16px
+- Full (pills): 9999px
+
+**Shadow:**
+- sm: 0 1px 2px rgba(0,0,0,0.05)
+- md: 0 4px 6px rgba(0,0,0,0.07)
+- lg: 0 10px 15px rgba(0,0,0,0.1)
+
+**Butonlar:**
+- Primary: Blue arka plan, beyaz text
+- Secondary: Transparent, border, text primary
+- Danger: Red arka plan, beyaz text
+- Disabled: Opacity 50%, cursor not-allowed
+
+**Form Elements:**
+- Input: Border, 8px padding, 6px radius, focus'ta blue ring
+- Textarea: min-height 100px
+- Placeholder: Slate 400
+
+### 6.3 Layout
+- Max width: 800px, yatay ortada
+- Padding: 16px (mobile) / 24px (tablet) / 32px (desktop)
+- Header: Ay/yıl başlığı + navigasyon + tema toggle
+- Grid: 7 sütun, responsive
+
+**Responsive Breakpoints:**
+- sm: 640px, md: 768px, lg: 1024px, xl: 1280px
+
+## 7. Non-Functional Requirements
+
+### 7.1 Performans
+- **İlk yükleme:** < 1.5 saniye
+- **LCP:** < 2.0 saniye
+- **Bundle size:** < 150KB gzipped
+- **Interaction to next paint:** < 100ms
+- **localStorage okuma/yazma:** < 50ms
+- **CLS:** < 0.1
+
+### 7.2 Erişilebilirlik (WCAG 2.1 AA)
+- **Klavye navigasyonu:** Tab, Shift+Tab, Enter, Escape, Arrow keys
+- **Screen reader:** ARIA labels, roles, live regions
+  - Takvim grid: role="grid", gün hücreleri: role="gridcell"
+  - Ay değişikliği: aria-live="polite"
+- **Kontrast:** >= 4.5:1 (text), >= 3:1 (large text)
+- **Focus state:** Tüm interactive elementlerde visible focus ring
+- **Touch hedefleri:** Minimum 44x44px
+- **Reduced motion:** prefers-reduced-motion desteği
+
+### 7.3 Tarayıcı Desteği
+- **Desktop:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- **Mobile:** iOS Safari 14+, Android Chrome 90+
+- **Responsive:** 320px — 1920px
+
+### 7.4 Güvenlik
+- **XSS koruması:** React'ın built-in escaping
+- **localStorage veri:** Kullanıcı tarafından değiştirilebilir (client-side risk kabul edilir)
+
+## 8. Proje Yapısı
+
+takvim-62161/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   ├── CalendarGrid.tsx
+│   │   ├── CalendarCell.tsx
+│   │   ├── CalendarHeader.tsx
+│   │   ├── DayModal.tsx
+│   │   ├── ThemeToggle.tsx
+│   │   ├── ConfirmDialog.tsx
+│   │   └── Icons.tsx
+│   ├── hooks/
+│   │   ├── useLocalStorage.ts
+│   │   ├── useCalendar.ts
+│   │   └── useTheme.ts
+│   ├── utils/
+│   │   ├── dateUtils.ts
+│   │   └── storageUtils.ts
+│   ├── types/
+│   │   └── calendar.ts
+│   ├── App.tsx
+│   ├── App.css
+│   └── main.tsx
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── tailwind.config.js
+├── postcss.config.js
+└── README.md
+
+## 9. Window State (Testing / Dogfood)
+
+```typescript
+window.app = {
+  state: 'idle',
+  currentMonth: '2026-04',
+  selectedDate: null,
+  entries: {},
+  theme: 'light',
+  version: '1.0.0',
+  _test: {
+    getEntry: (date: string) => CalendarData['entries'][date],
+    getAllEntries: () => CalendarData['entries'],
+    clearAll: () => void,
+    setMockData: (data: CalendarData) => void,
+  }
+}
+```
+
+## 10. Ekranlar
+
+| # | Ekran Adı | Tür | Açıklama |
+|---|-----------|-----|----------|
+| 1 | Ana Takvim | main | Aylık grid görünümü, navigasyon, tema toggle |
+| 2 | Gün Detay Modal | modal | Not ekleme/düzenleme modal penceresi |
+| 3 | Silme Onay Dialog | dialog | "Emin misin?" onay penceresi |
+| 4 | Boş Durum (Empty State) | empty | Hiç not yokken yardım metni |
+| 5 | Tema Değiştirici | toggle | Dark/light mode toggle butonu |
+| 6 | Mobil Navigasyon | responsive | 320px-480px kompakt grid |
+| 7 | Hata Durumu (Error) | error | localStorage hata ekranı |
+
+## 11. Kullanıcı Akışı (User Flow)
+
+1. Kullanıcı uygulamayı açar → Ana takvim görünür, içinde bulunulan ay ile
+2. Kullanıcı sol/sağ ok ile başka aya gider → Grid güncellenir
+3. Kullanıcı herhangi bir güne tıklar → Gün Detay Modal açılır
+4. Modal'da not girer ve "Kaydet" basar → localStorage'a kayıt olur, modal kapanır
+5. Kullanıcı dolu bir hücreye tekrar tıklar → Mevcut notu düzenleyebilir
+6. Kullanıcı silme butonuna basar → Onay Dialog açılır, onaylarsa not silinir
+7. Kullanıcı tema toggle basar → Koyu/açık tema arasında geçiş yapar
+8. Kullanıcı sayfayı kapatıp geri gelir → Tüm veriler ve tema tercihi korunur
+
+Generate a SEPARATE screen design for EVERY page, view, modal, dialog, tab panel, and settings screen described in this PRD. Do NOT skip ANY screen — even if it seems minor.
+
+MANDATORY SCREENS:
+- If the PRD mentions "settings" or "ayarlar" → generate a Settings screen
+- If the PRD mentions tabs or bottom navigation → generate EACH tab view as a separate screen
+- If the PRD mentions modals (statistics, help, share, confirmation) → generate each as a separate screen
+- If the PRD mentions error states, empty states, loading states → generate those too
+- Generate at least as many screens as there are distinct views/pages/modals in the PRD
+
+All visible text must be in Turkish. Use a dark, modern theme.
