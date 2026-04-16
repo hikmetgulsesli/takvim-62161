@@ -43,20 +43,19 @@ export function ConfirmDialog({
 
           {/* Message Body */}
           <div className="space-y-2">
-            <p className="text-on-surface-variant leading-relaxed text-sm">
-              {message.includes('geri alınamaz')
-                ? message.split('geri alınamaz').map((part, i, arr) =>
-                    i < arr.length - 1 ? (
-                      <span key={i}>
-                        {part}
-                        <span className="text-error font-medium italic underline decoration-error/30 underline-offset-4">geri alınamaz</span>
-                      </span>
-                    ) : (
-                      <span key={i}>{part}</span>
-                    )
-                  )
-                : <span>{message}</span>}
-            </p>
+            {message.includes('geri alınamaz') ? (
+              <p className="text-on-surface-variant leading-relaxed text-sm">
+                {message.split('geri alınamaz').map((part, i) => (
+                  <span key={i}>
+                    {part}{i < message.split('geri alınamaz').length - 1 && (
+                      <span className="text-error font-medium italic underline decoration-error/30 underline-offset-4">geri alınamaz</span>
+                    )}
+                  </span>
+                ))}
+              </p>
+            ) : (
+              <p className="text-on-surface-variant leading-relaxed text-sm">{message}</p>
+            )}
           </div>
 
           {/* Action Footer: Asymmetric Alignment */}
