@@ -3,12 +3,14 @@ import './App.css';
 import { useCalendar } from './context/CalendarContext';
 import { getMonthGrid, getMonthName, getWeekDays, formatDate, isSameDay } from './utils/dateUtils';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { DayDetailModal } from './components/DayDetailModal';
 
 function App() {
-  const { state, navigateMonth, goToToday, selectDate, addEvent } = useCalendar();
+  const { state, navigateMonth, goToToday, selectDate, addEvent, deleteEvent, updateEvent, getEventsForDate } = useCalendar();
   const { currentDate, selectedDate, events } = state;
   const [darkMode, setDarkMode] = useLocalStorage('takvim-dark-mode', true);
   const [showEventModal, setShowEventModal] = useState(false);
+  const [showDayDetailModal, setShowDayDetailModal] = useState(false);
   const [eventTitle, setEventTitle] = useState('');
   const [eventDesc, setEventDesc] = useState('');
   const [eventDate, setEventDate] = useState('');
@@ -25,7 +27,7 @@ function App() {
   const handleDayClick = (date: Date) => {
     selectDate(date);
     setEventDate(formatDate(date));
-    setShowEventModal(true);
+    setShowDayDetailModal(true);
   };
 
   const handleAddEvent = () => {
@@ -41,6 +43,8 @@ function App() {
     setEventDesc('');
     setShowEventModal(false);
   };
+
+  const selectedDayEvents = selectedDate ? getEventsForDate(selectedDate) : [];
 
   return (
     <div className="min-h-screen bg-background text-on-surface flex flex-col">
@@ -247,6 +251,16 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Day Detail Modal */}
+      <DayDetailModal
+        date={selectedDate || new Date()}
+        events={selectedDayEvents}
+        isOpen={showDayDetailModal}
+        onClose={() => setShowDayDetailModal(false)}
+        onDeleteEvent={deleteEvent}
+        onUpdateEvent={updateEvent}
+      />
     </div>
   );
 }

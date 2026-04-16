@@ -43,15 +43,11 @@ export function ConfirmDialog({
 
           {/* Message Body */}
           <div className="space-y-2">
-            {message.includes('geri alınamaz') ? (
+            {message === 'Bu notu silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve tüm ilişkili veriler kalıcı olarak kaldırılacaktır.' ? (
               <p className="text-on-surface-variant leading-relaxed text-sm">
-                {message.split('geri alınamaz').map((part, i) => (
-                  <span key={i}>
-                    {part}{i < message.split('geri alınamaz').length - 1 && (
-                      <span className="text-error font-medium italic underline decoration-error/30 underline-offset-4">geri alınamaz</span>
-                    )}
-                  </span>
-                ))}
+                Bu notu silmek istediğinize emin misiniz? Bu işlem{' '}
+                <span className="text-error font-medium italic underline decoration-error/30 underline-offset-4">geri alınamaz</span>{' '}
+                ve tüm ilişkili veriler kalıcı olarak kaldırılacaktır.
               </p>
             ) : (
               <p className="text-on-surface-variant leading-relaxed text-sm">{message}</p>
