@@ -44,16 +44,18 @@ export function ConfirmDialog({
           {/* Message Body */}
           <div className="space-y-2">
             <p className="text-on-surface-variant leading-relaxed text-sm">
-              {message.split('geri alınamaz').map((part, i, arr) =>
-                i < arr.length - 1 ? (
-                  <span key={i}>
-                    {part}
-                    <span className="text-error font-medium italic underline decoration-error/30 underline-offset-4">geri alınamaz</span>
-                  </span>
-                ) : (
-                  <span key={i}>{part}</span>
-                )
-              )}
+              {message.includes('geri alınamaz')
+                ? message.split('geri alınamaz').map((part, i, arr) =>
+                    i < arr.length - 1 ? (
+                      <span key={i}>
+                        {part}
+                        <span className="text-error font-medium italic underline decoration-error/30 underline-offset-4">geri alınamaz</span>
+                      </span>
+                    ) : (
+                      <span key={i}>{part}</span>
+                    )
+                  )
+                : message}
             </p>
           </div>
 
@@ -62,6 +64,7 @@ export function ConfirmDialog({
             {/* Confirm Delete (Primary Gradient) */}
             <button
               onClick={onConfirm}
+              onKeyDown={(e) => { if (e.key === 'Enter') onConfirm(); }}
               className="w-full sm:w-auto order-1 sm:order-2 px-8 py-3 rounded-xl bg-gradient-to-br from-error to-error-container text-on-error font-semibold text-sm transition-all duration-200 hover:brightness-110 active:scale-[0.98] shadow-lg shadow-error/10 cursor-pointer"
             >
               {confirmLabel}
@@ -69,6 +72,7 @@ export function ConfirmDialog({
             {/* Cancel (Ghost Style) */}
             <button
               onClick={onCancel}
+              onKeyDown={(e) => { if (e.key === 'Escape') onCancel(); }}
               className="w-full sm:w-auto order-2 sm:order-1 px-6 py-3 rounded-xl bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-medium text-sm transition-colors duration-200 outline outline-1 outline-outline-variant/20 cursor-pointer"
             >
               {cancelLabel}
