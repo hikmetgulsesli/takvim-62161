@@ -1,0 +1,185 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+:root {
+  --font-headline: Inter;
+  --font-body: Inter;
+  --font-label: Inter;
+
+  --color-surface-dim: #0b1326;
+  --color-surface-container-low: #131b2e;
+  --color-on-error: #690005;
+  --color-on-tertiary-fixed: #261900;
+  --color-on-surface: #dae2fd;
+  --color-secondary: #b9c8de;
+  --color-on-background: #dae2fd;
+  --color-primary-fixed: #d4e3ff;
+  --color-surface-bright: #31394d;
+  --color-on-primary-fixed: #001c39;
+  --color-outline-variant: #414751;
+  --color-tertiary-container: #d19900;
+  --color-outline: #8b919d;
+  --color-background: #0b1326;
+  --color-tertiary-fixed: #ffdea4;
+  --color-on-secondary: #233143;
+  --color-primary: #a4c9ff;
+  --color-on-surface-variant: #c1c7d3;
+  --color-on-error-container: #ffdad6;
+  --color-error: #ffb4ab;
+  --color-primary-container: #60a5fa;
+  --color-surface: #0b1326;
+  --color-on-primary-container: #003a6b;
+  --color-inverse-on-surface: #283044;
+  --color-tertiary-fixed-dim: #fabd34;
+  --color-surface-tint: #a4c9ff;
+  --color-inverse-surface: #dae2fd;
+  --color-tertiary: #fabd34;
+  --color-secondary-container: #39485a;
+  --color-on-primary-fixed-variant: #004883;
+  --color-secondary-fixed-dim: #b9c8de;
+  --color-primary-fixed-dim: #a4c9ff;
+  --color-on-secondary-container: #a7b6cc;
+  --color-surface-container-highest: #2d3449;
+  --color-error-container: #93000a;
+  --color-surface-variant: #2d3449;
+  --color-inverse-primary: #0060ac;
+  --color-on-tertiary-container: #4b3500;
+  --color-on-secondary-fixed: #0d1c2d;
+  --color-surface-container-lowest: #060e20;
+  --color-on-tertiary: #412d00;
+  --color-on-secondary-fixed-variant: #39485a;
+  --color-on-tertiary-fixed-variant: #5d4200;
+  --color-on-primary: #00315d;
+  --color-surface-container-high: #222a3d;
+  --color-secondary-fixed: #d4e4fa;
+  --color-surface-container: #171f33;
+
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tailwind CSS v4 uses CSS variables by default */
+@theme {
+  --color-surface-dim: var(--color-surface-dim);
+  --color-surface-container-low: var(--color-surface-container-low);
+  --color-on-surface: var(--color-on-surface);
+  --color-secondary: var(--color-secondary);
+  --color-primary: var(--color-primary);
+  --color-primary-container: var(--color-primary-container);
+  --color-surface: var(--color-surface);
+  --color-surface-bright: var(--color-surface-bright);
+  --color-surface-container: var(--color-surface-container);
+  --color-surface-container-high: var(--color-surface-container-high);
+  --color-surface-container-low: var(--color-surface-container-low);
+  --color-surface-container-highest: var(--color-surface-container-highest);
+  --color-surface-variant: var(--color-surface-variant);
+  --color-surface-dim: var(--color-surface-dim);
+  --color-surface-tint: var(--color-surface-tint);
+  --color-on-primary: var(--color-on-primary);
+  --color-on-primary-container: var(--color-on-primary-container);
+  --color-on-surface-variant: var(--color-on-surface-variant);
+  --color-secondary-container: var(--color-secondary-container);
+  --color-on-secondary-container: var(--color-on-secondary-container);
+  --color-secondary: var(--color-secondary);
+  --color-tertiary: var(--color-tertiary);
+  --color-tertiary-container: var(--color-tertiary-container);
+  --color-on-tertiary-container: var(--color-on-tertiary-container);
+  --color-tertiary-fixed: var(--color-tertiary-fixed);
+  --color-on-tertiary-fixed: var(--color-on-tertiary-fixed);
+  --color-error: var(--color-error);
+  --color-error-container: var(--color-error-container);
+  --color-on-error: var(--color-on-error);
+  --color-on-error-container: var(--color-on-error-container);
+  --color-background: var(--color-background);
+  --color-on-background: var(--color-on-background);
+  --color-inverse-surface: var(--color-inverse-surface);
+  --color-inverse-on-surface: var(--color-inverse-on-surface);
+  --color-inverse-primary: var(--color-inverse-primary);
+  --color-outline: var(--color-outline);
+  --color-outline-variant: var(--color-outline-variant);
+  --color-primary-fixed: var(--color-primary-fixed);
+  --color-primary-fixed-dim: var(--color-primary-fixed-dim);
+  --color-on-primary-fixed: var(--color-on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--color-on-primary-fixed-variant);
+  --color-secondary-fixed: var(--color-secondary-fixed);
+  --color-secondary-fixed-dim: var(--color-secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--color-on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--color-on-secondary-fixed-variant);
+  --color-surface-container-lowest: var(--color-surface-container-lowest);
+  --color-tertiary-fixed-dim: var(--color-tertiary-fixed-dim);
+  --color-on-tertiary: var(--color-on-tertiary);
+  --color-on-tertiary-fixed-variant: var(--color-on-tertiary-fixed-variant);
+
+  --font-headline: Inter;
+  --font-body: Inter;
+  --font-label: Inter;
+
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+}
+
+/* Material Symbols Outlined */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Custom scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.no-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-outline-variant);
+  border-radius: 3px;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-outline);
+}
+
+/* Focus visible styles */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Glassmorphism utility */
+.glass-modal {
+  background: rgba(23, 31, 51, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
