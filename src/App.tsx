@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useCalendar } from './context/CalendarContext';
 import { getMonthGrid, getMonthName, getWeekDays, formatDate, isSameDay } from './utils/dateUtils';
 import { useLocalStorage } from './hooks/useLocalStorage';
