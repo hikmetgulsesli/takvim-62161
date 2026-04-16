@@ -55,7 +55,7 @@ export function ConfirmDialog({
                       <span key={i}>{part}</span>
                     )
                   )
-                : message}
+                : <span>{message}</span>}
             </p>
           </div>
 
