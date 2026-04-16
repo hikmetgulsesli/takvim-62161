@@ -215,4 +215,9 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
 }
